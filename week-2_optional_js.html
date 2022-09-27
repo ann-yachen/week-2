@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment: Week-2 Optional</title>
+</head>
+<body>
+    <script>
+        console.log("======= Request-6 (Optional) =======")
+        /* Request-6 (Optional) */
+        function maxZeros(nums){
+            let max_length=0;
+            for(let i=0; i<nums.length; i++){
+                let length=0;
+                for(let j=i; j<nums.length; j++){
+                    if(nums[j]==0){
+                        length++;
+                    }else{
+                        break; // if 1, teminate this loop
+                    }
+                }
+                if(length>max_length){
+                    max_length=length;
+                }
+            }
+            return max_length;
+        }
+        console.log(maxZeros([0, 1, 0, 0]));
+        console.log(maxZeros([1, 0, 0, 0, 0, 1, 0, 1, 0, 0]));
+        console.log(maxZeros([1, 1, 1, 1, 1]));
+        console.log(maxZeros([0, 0, 0, 1, 1]));
+    </script>
+</body>
+</html>
