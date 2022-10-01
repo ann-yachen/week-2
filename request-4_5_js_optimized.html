@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment: Week-2 Optimized</title>
+</head>
+<body>
+    <script>
+        console.log("======= Request-4 =======");             
+        /* Request-4 */
+        function maxProduct(nums){
+            // bubble sort, O(n^2)
+            let flag=0;
+            for(let i=nums.length; i>1; i--){
+                for(let j=0; j<i-1; j++){
+                    if(nums[j]>nums[j+1]){
+                        [nums[j], nums[j+1]]=[nums[j+1], nums[j]];
+                        flag=1;
+                    }
+                }
+                if(flag==0){ // if no swap this time, break
+                    break;
+                }
+            }
+            let last_index=nums.length-1; // get the last index of nums
+            // the max product should be the product of 1st and 2nd maximum, or 1st and 2nd minimum if they are both negitive
+            if(nums[last_index]*nums[last_index-1]>nums[0]*nums[1]){
+                return nums[last_index]*nums[last_index-1];
+            }else{
+                return nums[0]*nums[1];
+            }
+        }
+        console.log(maxProduct([5, 20, 2, 6])); // 120
+        console.log(maxProduct([10, -20, 0, 3])); // 30
+        console.log(maxProduct([10, -20, 0, -3])); // 60
+        console.log(maxProduct([-1, 2])); // -2
+        console.log(maxProduct([-1, 0, 2])); // 0
+        console.log(maxProduct([5, -1, -2, 0])); // 2
+        console.log(maxProduct([-5, -2])); // 10
+
+        console.log("======= Request-5 =======");         
+        /* Request-5 */
+        /* Given an array of integers, show indices of the two numbers such that they add up to a
+        specific target. You can assume that each input would have exactly one solution, and you
+        can not use the same element twice. */
+        function twoSum(nums, target){
+            let map=new Map(); // Hash Map
+            let ans=new Array();
+            for(let i=0; i<nums.length; i++){
+                if(map.has(target-nums[i])){ // if target-nums[i] (as key) existed in map
+                    ans=[map.get(target-nums[i]), i]; // get value from target-nums[i] (key)
+                }else{
+                    map.set(nums[i], i); // store num[i] as key, i as value in map
+                }
+            }
+            return ans;
+        }
+        let result=twoSum([2, 11, 7, 15], 9);
+        console.log(result); // index = [0, 2]
+    </script>
+</body>
+</html>
